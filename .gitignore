@@ -1,0 +1,44 @@
+# Ignore node_modules directory (contains installed packages)
+node_modules/
+
+# Ignore npm/yarn lock files
+package-lock.json
+yarn.lock
+
+# Ignore build and output directories
+dist/
+build/
+out/
+
+# Ignore any IDE/editor-specific files or directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore log files
+*.log
+
+# Ignore compiled or transpiled files
+*.js
+*.js.map
+*.ts
+*.ts.map
+*.jsx
+*.jsx.map
+
+# Ignore minified files
+*.min.js
+
+# Ignore environment configuration files
+.env
+.env.local
+.env.*.local
+
+# Ignore user-specific configuration files
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# Ignore any other project-specific files or directories you want to exclude
