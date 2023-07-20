@@ -18,16 +18,12 @@ function placeHolder() {
     return result;
 }
 
-function volumeCredits() {
-    let volumeCredits = 0;
-    for (let perf of invoices.performances) {
-        const play = plays[perf.playID];
-        volumeCredits += Math.max(perf.audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-    }
-
-    return volumeCredits;
+function usd(amount) {
+    return new Intl.NumberFormat("en-US",
+        {
+            style: "currency", currency: "USD",
+            minimumFractionDigits: 2
+        }).format(amount / 100);
 }
 
 function totalAmount() {
@@ -39,12 +35,16 @@ function totalAmount() {
     return result
 }
 
-function usd(amount) {
-    return new Intl.NumberFormat("en-US",
-        {
-            style: "currency", currency: "USD",
-            minimumFractionDigits: 2
-        }).format(amount / 100);
+function volumeCredits() {
+    let volumeCredits = 0;
+    for (let perf of invoices.performances) {
+        const play = plays[perf.playID];
+        volumeCredits += Math.max(perf.audience - 30, 0);
+        // add extra credit for every ten comedy attendees
+        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
+    }
+
+    return volumeCredits;
 }
 
 function amount(play, perf) {
