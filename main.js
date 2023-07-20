@@ -3,15 +3,18 @@ const plays = require('./plays.json')
 
 function statement() {
     let result = `Statement for ${invoices.customer}\n`;
-
-    for (let perf of invoices.performances) {
-        const play = plays[perf.playID];
-
-        result += ` ${play.name}: ${usd(amount(play, perf) / 100)} (${perf.audience} seats)\n`;
-
-    }
+    result += placeHolder()
     result += `Amount owed is ${usd(totalAmount() / 100)}\n`;
     result += `You earned ${volumeCredits()} credits\n`;
+    return result;
+}
+
+function placeHolder() {
+    let result = ''
+    for (let perf of invoices.performances) {
+        const play = plays[perf.playID];
+        result += ` ${play.name}: ${usd(amount(play, perf) / 100)} (${perf.audience} seats)\n`;
+    }
     return result;
 }
 
@@ -29,12 +32,10 @@ function volumeCredits() {
 
 function totalAmount() {
     let result = 0;
-
     for (let perf of invoices.performances) {
         const play = plays[perf.playID];
         result += amount(play, perf);
     }
-
     return result
 }
 
