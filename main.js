@@ -12,7 +12,7 @@ function statement() {
 function placeHolder() {
     let result = ''
     for (let perf of invoices.performances) {
-        result += ` ${playFor(perf).name}: ${usd(amount(playFor(perf), perf))} (${perf.audience} seats)\n`;
+        result += ` ${playFor(perf).name}: ${usd(amount(perf))} (${perf.audience} seats)\n`;
     }
     return result;
 }
@@ -32,7 +32,7 @@ function usd(amount) {
 function totalAmount() {
     let result = 0;
     for (let perf of invoices.performances) {
-        result += amount(playFor(perf), perf);
+        result += amount(perf);
     }
     return result
 }
@@ -49,9 +49,9 @@ function volumeCredits() {
     return volumeCredits;
 }
 
-function amount(play, perf) {
+function amount(perf) {
     let result = 0;
-    switch (play.type) {
+    switch (playFor(perf).type) {
         case "tragedy":
             result = 40000;
             if (perf.audience > 30) {
@@ -66,7 +66,7 @@ function amount(play, perf) {
             result += 300 * perf.audience;
             break;
         default:
-            throw new Error(`unknown type: ${play.type}`);
+            throw new Error(`unknown type: ${playFor(perf).type}`);
     }
     return result;
 }
