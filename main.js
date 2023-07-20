@@ -23,7 +23,6 @@ function statement(invoice, plays) {
     return result;
 }
 
-
 function usd(amount) {
     return new Intl.NumberFormat("en-US",
         {
@@ -41,25 +40,21 @@ function amount(play, perf) {
                 result += 1000 * (perf.audience - 30);
             }
             break;
-            case "comedy":
-                result = 30000;
-                if (perf.audience > 20) {
-                    result += 10000 + 500 * (perf.audience - 20);
-                }
-                result += 300 * perf.audience;
-                break;
-                default:
-                    throw new Error(`unknown type: ${play.type}`);
+        case "comedy":
+            result = 30000;
+            if (perf.audience > 20) {
+                result += 10000 + 500 * (perf.audience - 20);
+            }
+            result += 300 * perf.audience;
+            break;
+        default:
+            throw new Error(`unknown type: ${play.type}`);
     }
     return result;
 }
-
-
-
 
 console.log(statement(invoices, plays))
 module.exports = {
     statement,
     amount
 }
-
