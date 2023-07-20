@@ -2,30 +2,35 @@ const invoices = require('./invoices.json')
 const plays = require('./plays.json')
 
 function statement(invoice) {
-    let totalAmount = 0;
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
 
+   
     for (let perf of invoice.performances) {
         const play = plays[perf.playID];
-        totalAmount += amount(play, perf);
-    }
 
-
-    for (let perf of invoice.performances) {
-        const play = plays[perf.playID];
-    
         // add volume credits
         volumeCredits += Math.max(perf.audience - 30, 0);
         // add extra credit for every ten comedy attendees
         if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
         // print line for this order
         result += ` ${play.name}: ${usd(amount(play, perf) / 100)} (${perf.audience} seats)\n`;
-        
+
     }
-    result += `Amount owed is ${usd(totalAmount / 100)}\n`;
+    result += `Amount owed is ${usd(totalAmount() / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     return result;
+}
+
+function totalAmount() {
+    let result = 0;
+
+    for (let perf of invoices.performances) {
+        const play = plays[perf.playID];
+        result += amount(play, perf);
+    }
+
+    return result
 }
 
 function usd(amount) {
