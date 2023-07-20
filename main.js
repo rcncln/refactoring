@@ -56,5 +56,8 @@ function amount(play, perf) {
 
 
 console.log(statement(invoices, plays))
-module.exports = statement
+module.exports = {
+    statement,
+    amount
+}
 
