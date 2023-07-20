@@ -1,12 +1,11 @@
 const invoices = require('./invoices.json')
 const plays = require('./plays.json')
 
-function statement(invoice) {
+function statement() {
     let volumeCredits = 0;
-    let result = `Statement for ${invoice.customer}\n`;
+    let result = `Statement for ${invoices.customer}\n`;
 
-   
-    for (let perf of invoice.performances) {
+    for (let perf of invoices.performances) {
         const play = plays[perf.playID];
 
         // add volume credits
@@ -63,7 +62,7 @@ function amount(play, perf) {
     return result;
 }
 
-console.log(statement(invoices))
+console.log(statement())
 module.exports = {
     statement,
     amount
