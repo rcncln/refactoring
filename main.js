@@ -12,10 +12,13 @@ function statement() {
 function placeHolder() {
     let result = ''
     for (let perf of invoices.performances) {
-        const play = plays[perf.playID];
-        result += ` ${play.name}: ${usd(amount(play, perf))} (${perf.audience} seats)\n`;
+        result += ` ${playFor(perf).name}: ${usd(amount(playFor(perf), perf))} (${perf.audience} seats)\n`;
     }
     return result;
+}
+
+function playFor(performance) {
+    return plays[performance.playID]
 }
 
 function usd(amount) {
@@ -29,8 +32,7 @@ function usd(amount) {
 function totalAmount() {
     let result = 0;
     for (let perf of invoices.performances) {
-        const play = plays[perf.playID];
-        result += amount(play, perf);
+        result += amount(playFor(perf), perf);
     }
     return result
 }
