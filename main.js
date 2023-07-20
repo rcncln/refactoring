@@ -8,15 +8,14 @@ function statement(invoice, plays) {
 
     for (let perf of invoice.performances) {
         const play = plays[perf.playID];
-        let thisAmount = 0;
-        thisAmount = amount(play, perf);
+    
         // add volume credits
         volumeCredits += Math.max(perf.audience - 30, 0);
         // add extra credit for every ten comedy attendees
         if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
         // print line for this order
-        result += ` ${play.name}: ${usd(thisAmount / 100)} (${perf.audience} seats)\n`;
-        totalAmount += thisAmount;
+        result += ` ${play.name}: ${usd(amount(play, perf) / 100)} (${perf.audience} seats)\n`;
+        totalAmount += amount(play, perf);
     }
     result += `Amount owed is ${usd(totalAmount / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
