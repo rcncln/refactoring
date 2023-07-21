@@ -4,14 +4,6 @@ var assert = require('assert');
 const invoices = require('../invoices.json')
 const plays = require('../plays.json')
 
-describe('Array', function () {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  });
-});
-
 describe('statement', function () {
   it('it should return a string value', function () {
     const result = statement(invoices, plays)
