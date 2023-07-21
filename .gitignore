@@ -20,7 +20,7 @@ out/
 *.log
 
 # Ignore compiled or transpiled files
-*.js
+
 *.js.map
 *.ts
 *.ts.map
