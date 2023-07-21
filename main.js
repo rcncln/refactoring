@@ -39,6 +39,11 @@ function totalAmount() {
     return result
 }
 
+function amount(perf) {
+    const calculator = new CalculatorFactory(perf, plays).create()
+    return calculator.amount()
+}
+
 function volumeCredits() {
     let volumeCredits = 0;
     for (let perf of invoices.performances) {
@@ -48,10 +53,6 @@ function volumeCredits() {
     return volumeCredits;
 }
 
-function amount(perf) {
-    const calculator = new CalculatorFactory(perf, plays).create()
-    return calculator.amount()
-}
  
 console.log(statement())
 module.exports = {
