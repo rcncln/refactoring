@@ -1,6 +1,5 @@
 const invoices = require('./invoices.json')
 const plays = require('./plays.json')
-const { TragedyCalculator, ComedyCalculator } = require('./performanceCalculator')
 const { CalculatorFactory } = require('./calculatorFactory');
 
 function statement() {
