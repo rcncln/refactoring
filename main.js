@@ -1,5 +1,6 @@
 const invoices = require('./invoices.json')
 const plays = require('./plays.json')
+const { TragedyCalculator, ComedyCalculator }  =require('./performanceCalculator')
 
 function statement() {
     let result = `Statement for ${invoices.customer}\n`;
@@ -49,18 +50,9 @@ function volumeCredits() {
 function amount(perf) {
     let result = 0;
     switch (playFor(perf).type) {
-        case "tragedy":
-            result = 40000;
-            if (perf.audience > 30) {
-                result += 1000 * (perf.audience - 30);
-            }
+        case "tragedy": result += new TragedyCalculator(perf, plays).amount()
             break;
-        case "comedy":
-            result = 30000;
-            if (perf.audience > 20) {
-                result += 10000 + 500 * (perf.audience - 20);
-            }
-            result += 300 * perf.audience;
+        case "comedy": result += new ComedyCalculator(perf, plays).amount()
             break;
         default:
             throw new Error(`unknown type: ${playFor(perf).type}`);
