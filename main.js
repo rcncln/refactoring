@@ -39,8 +39,8 @@ function totalAmount() {
     return result
 }
 
-function amount(perf) {
-    const calculator = new CalculatorFactory(perf, plays).create()
+function amount(performance) {
+    const calculator = new CalculatorFactory(performance, plays).create()
     return calculator.amount()
 }
 
