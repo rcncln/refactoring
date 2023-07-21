@@ -1,6 +1,6 @@
 const invoices = require('./invoices.json')
 const plays = require('./plays.json')
-const { TragedyCalculator, ComedyCalculator }  =require('./performanceCalculator')
+const { TragedyCalculator, ComedyCalculator } = require('./performanceCalculator')
 
 function statement() {
     let result = `Statement for ${invoices.customer}\n`;

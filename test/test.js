@@ -1,10 +1,8 @@
 const { statement, amount } = require('../main')
 
-
 var assert = require('assert');
 const invoices = require('../invoices.json')
 const plays = require('../plays.json')
-
 
 describe('Array', function () {
   describe('#indexOf()', function () {
@@ -25,7 +23,6 @@ describe('statement', function () {
       + 'You earned 47 credits\n', result)
   })
 })
-
 
 describe('amount', function () {
   it('amount owed should equal to 1 730 USD', function () {
